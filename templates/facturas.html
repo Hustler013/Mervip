@@ -1,0 +1,143 @@
+{% extends 'baseclientes.html' %}
+
+{% block body %}
+
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg " style="background-color: black;">
+            <div class="container px-4 px-lg-5">
+                 <a class="navbar-brand" href="/inicio" style="color:white"><img src="/static/img/m_logo.png" width="8%">&nbsp; Mervip</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+
+                        <li class="nav-item"><a class="nav-link" href="/ayuda" style="color:white"><i class="bi bi-question-diamond-fill"></i>Ayuda</a></li>
+                         <li class="nav-item"><a class="nav-link" href="/comparar" style="color:white"><i class="bi bi-x-diamond-fill"></i> Comparar Productos</a></li>
+
+                    </ul>
+                        <a class="btn btn-outline-dark" href="/vercarrito" role="button" style="color:white"><i class="bi-cart-fill me-1"></i>Carrito
+                             <span class="badge rounded-pill bg-secondary">{{cant}}</span></a>
+
+
+
+                        <li class="nav-item dropdown" style="list-style:none;">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
+                                   <font size="4"> <b> <i class="bi bi-person-circle"></i> {{ nomb }} </b> </font>
+                                </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/cerrarsesion" > <i class="bi bi-box-arrow-in-right"></i> Cerrar Sesión</a></li>
+                                 <li><a class="dropdown-item" href="/misfacturas"><i class="bi bi-bag-fill"></i> Mis Compras</a></li>
+
+                            </ul>
+                         </li>
+
+
+
+
+
+
+                </div>
+            </div>
+        </nav>
+
+<div class="container">
+    <br>
+    <br>
+  <a class="btn btn-outline-success" href="/misfacturas" role="button"> Regresar </a>
+</div>
+
+
+<div class="container" id="fact">
+
+
+
+    <br><br><br>
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+       <b> <font size="6 px"> MERVIP </font> </b> <br>
+        Tienda de Pantalones para Hombre y Mujer.<br>
+        Matriz : Av.Amazonas y Naciones Unidas<br>
+
+
+    </div>
+    <div class="col">
+       <b> <font size="4 px"> R.U.C : 9999999999001 </font> </b> <br>
+        <b> <font size="4 px"> FACTURA #001-001-000{{fat}} </font> </b> <br>
+        <b align="left"> <font size="4 px" > Fecha y Hora de Autorización : {{fecha}} </font> </b> <br>
+        <b> <font size="4 px"> Ambiente  : Producción  </font> </b> <br>
+         <b> <font size="4 px"> Emision  : Normal  </font> </b> <br>
+
+
+    </div>
+
+  </div>
+</div>
+<hr>
+<div class="mb-3">
+  <label for="formGroupExampleInput" class="form-label">Razón Social : </label>
+  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="{{nomb}}" readonly>
+</div>
+<div class="mb-3">
+  <label for="formGroupExampleInput2" class="form-label">Identificación : </label>
+  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="{{cedula}}" readonly>
+</div>
+
+<hr>
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+
+        <th scope="col"><center>Cant</center></th>
+        <th scope="col">Descripción</th>
+
+        <th scope="col">Precio Unitario</th>
+        <th scope="col">Precio Total</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+   {% for tc in fact %}
+    <tr>
+
+      <td><center>  00{{tc.0}} </center></td>
+      <td><center>{{tc.1}}</center></td>
+        <td><center>{{tc.3}}</center></td>
+        <td><center>{{ "$%.2f"|format(tc.4) }}</center></td>
+
+
+
+    </tr>
+
+
+    {% endfor %}
+
+  </tbody>
+</table>
+
+<hr>
+
+     <b><i><h5 align="right"> SUBTOTAL : $ {{sub}} </h5></i></b>
+    <b><i><h5 align="right"> IVA 12% : $ {{iva}} </h5></i></b>
+    <b><i><h5 align="right"> Descuentos : $0.00 </h5></i></b>
+    <b><i><h5 align="right"> Total : $ {{tt}}</h5></i></b>
+
+</div>
+
+<center><a href="javascript:imprSelec('fact')" class="btn btn-danger"><i class="bi bi-file-pdf-fill"></i> Generar PDF</a></center>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<script language="Javascript">
+	function imprSelec(nombre) {
+	  var ficha = document.getElementById(nombre);
+	  var ventimp = window.open(' ', 'popimpr');
+	  ventimp.document.write( ficha.innerHTML );
+	  ventimp.document.close();
+	  ventimp.print( );
+	  ventimp.close();
+	}
+	</script>
+
+
+
+ {% endblock %}

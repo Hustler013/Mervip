@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block body %}
+ <main class="flex-shrink-0">
+             <nav class="navbar navbar-expand-lg " style="background-color: black;" >
+                <div class="container px-5">
+                    <a class="navbar-brand" href="/" style="color:white"><img src="/static/img/m_logo.png" width="8%">&nbsp; MERVIP </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <!-- Button trigger modal -->
+
+
+                            <li class="nav-item"><a class="nav-link" href="/verproductos" accesskey="N" style="color:white"><i class="bi bi-shop-window"></i> Productos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/contactos" accesskey="C" style="color:white"><i class="bi bi-telephone-fill"></i> Contactos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login" accesskey="L" style="color:white"><i class="bi bi-person-badge"></i> Iniciar Sesión</a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+ <br>
+<br>
+
+ <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    {% for t in pr %}
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{t.8}}" alt="..." /></div>
+                    <div class="col-md-6">
+
+
+                        <h1 class="display-5 fw-bolder" style="color:white">{{t.1}}</h1>
+                        <div class="fs-5 mb-5">
+                            <b><h3 style="color:white">${{t.6}}</h3></b>
+                        </div>
+
+
+                        <b><p class="lead" style="color:white">{{t.2}}</p></b>
+
+
+                        <div class="d-flex">
+                            <a class="btn btn-secondary btn-lg" href="/inicio">
+                                <i class="bi-cart-fill me-1"></i>
+                                Comprar
+                            </a>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+        <!-- Related items section-->
+        <section class="py-5 bg-light">
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4">Productos Relacionados : </h2>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                    {% for z in pc %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{z.8}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{z.1}}</h5>
+                                    <!-- Product price-->
+                                    {{z.6}}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/productod?id={{z.0}}">Más Información</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                      {% endfor %}
+
+                </div>
+
+
+
+            </div>
+        </section>
+
+
+
+
+
+{% endblock %}

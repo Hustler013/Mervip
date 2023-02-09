@@ -1,0 +1,143 @@
+{% extends 'baseclientes.html' %}
+
+{% block body %}
+
+ <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg " style="background-color: black;">
+            <div class="container px-4 px-lg-5">
+                 <a class="navbar-brand" href="/inicio" style="color:white"><img src="/static/img/m_logo.png" width="8%">&nbsp; Mervip</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+
+                        <li class="nav-item"><a class="nav-link" href="/ayuda" style="color:white"><i class="bi bi-question-diamond-fill"></i>Ayuda</a></li>
+                         <li class="nav-item"><a class="nav-link" href="/comparar" style="color:white"><i class="bi bi-x-diamond-fill"></i> Comparar Productos</a></li>
+
+                    </ul>
+                        <a class="btn btn-outline-dark" href="/vercarrito" role="button" style="color:white"><i class="bi-cart-fill me-1"></i>Carrito
+                             <span class="badge rounded-pill bg-secondary">{{cant}}</span></a>
+
+
+
+                        <li class="nav-item dropdown" style="list-style:none;">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
+                                   <font size="4"> <b> <i class="bi bi-person-circle"></i> {{ nomb }} </b> </font>
+                                </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/cerrarsesion" > <i class="bi bi-box-arrow-in-right"></i> Cerrar Sesión</a></li>
+                                 <li><a class="dropdown-item" href="/misfacturas"><i class="bi bi-bag-fill"></i> Mis Compras</a></li>
+
+                            </ul>
+                         </li>
+
+
+
+
+
+
+                </div>
+            </div>
+        </nav>
+
+       <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">
+                        <img src="/static/img/distribucion.png" class="img-fluid" width="5%">
+
+                        Comparación de Productos
+                    <img src="/static/img/distribucion.png" class="img-fluid" width="5%">
+                    </h1>
+
+                </div>
+            </div>
+        </header>
+<br>
+<br>
+<div class="container">
+<center>
+    <div class="row">
+    <div class="col">
+
+        {% for t in pa %}
+      <div class="card" style="width: 18rem;">
+            <img src="{{t.2}}" class="card-img-top" alt="...">
+             <div class="card-body">
+                 <b> {{t.0}}</b>
+
+             </div>
+      </div>
+
+    <table class="table">
+
+
+        <tbody>
+
+        {{t.1|safe}}
+
+        </tbody>
+
+
+    </table>
+
+
+
+
+
+
+
+
+  {% endfor %}
+
+
+    </div>
+    <div class="col">
+
+              {% for t in pb %}
+      <div class="card" style="width: 18rem;">
+            <img src="{{t.2}}" class="card-img-top" alt="...">
+             <div class="card-body">
+                 <b>{{t.0}}</b>
+
+             </div>
+      </div>
+  <table class="table">
+
+
+
+        <tbody>
+
+             {{t.1|safe}}
+
+        </tbody>
+
+
+    </table>
+
+  {% endfor %}
+
+
+
+    </div>
+  </div>
+
+</center>
+
+</div>
+
+
+<center><a class="btn btn-danger btn-lg" href="/comparar" role="button">Regresar</a></center>
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+{% endblock %}

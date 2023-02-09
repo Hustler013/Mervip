@@ -1,0 +1,11 @@
+
+https://remotemysql.com/
+user : cpruebas285@gmail.com
+clave: @7080uiosT
+
+PHPMYADMIN
+user:3LuICOPYq0
+password : Fh6aYfHmFi
+
+Instalar mediante terminal de Pycharm
+flask y pymysql

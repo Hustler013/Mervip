@@ -1,0 +1,26 @@
+--------------------
+Date: 22:7:2021
+Time: 15:34
+Phone number: +593 97 917 8408
+Message: Hola te envio este mensaje desde Python
+--------------------
+Date: 22:7:2021
+Time: 0:1
+Phone number: +593 97 917 8408
+Message: Hola te envio este mensaje desde Python
+--------------------
+Date: 22:7:2021
+Time: 1:0
+Phone number: +593 97 917 8408
+Message: Hola te envio este mensaje desde Python
+--------------------
+Date: 22:7:2021
+Time: 15:0
+Phone number: +593979178408
+Message: Hello, World
+--------------------
+Date: 22:7:2021
+Time: 11:42
+Phone number: +593979178408
+Message: Hello, World
+--------------------

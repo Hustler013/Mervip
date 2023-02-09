@@ -1,0 +1,205 @@
+{% extends 'baseclientes.html' %}
+
+{% block body %}
+
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg " style="background-color: black;">
+            <div class="container px-4 px-lg-5">
+                 <a class="navbar-brand" href="/inicio" style="color:white"><img src="/static/img/m_logo.png" width="8%">&nbsp; Mervip</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+
+                        <li class="nav-item"><a class="nav-link" href="/ayuda" style="color:white"><i class="bi bi-question-diamond-fill"></i>Ayuda</a></li>
+                         <li class="nav-item"><a class="nav-link" href="/comparar" style="color:white"><i class="bi bi-x-diamond-fill"></i> Comparar Productos</a></li>
+
+                    </ul>
+                        <a class="btn btn-outline-dark" href="/vercarrito" role="button" style="color:white"><i class="bi-cart-fill me-1"></i>Carrito
+                             <span class="badge rounded-pill bg-secondary">{{cant}}</span></a>
+
+
+
+                        <li class="nav-item dropdown" style="list-style:none;">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
+                                   <font size="4"> <b> <i class="bi bi-person-circle"></i> {{ nomb }} </b> </font>
+                                </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/cerrarsesion" > <i class="bi bi-box-arrow-in-right"></i> Cerrar Sesión</a></li>
+                                 <li><a class="dropdown-item" href="/misfacturas"><i class="bi bi-bag-fill"></i> Mis Compras</a></li>
+
+                            </ul>
+                         </li>
+
+
+
+
+
+
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5" >
+            <div class="container px-4 px-lg-5 my-5" >
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Bienvenido a Mervip: </h1>
+                    <center><h1><img src="/static/img/inicio.png" width="5%"> {{ nomb }}</h1></center>
+
+                </div>
+            </div>
+        </header>
+
+<div class="container">
+
+        <!-- Section-->
+        <section class="py-5">
+
+            <center><h4> <img src="/static/img/cat.png" width="3%"> Catálogo de Productos <img src="/static/img/cat.png" width="3%"></h4></center>
+            <br>
+<!-- Inicio lista-->
+                  <div class="row">
+  <div class="col-4">
+      <b><h5>Seleccione una categoria : </h5></b>
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Todos los Productos <span class="badge rounded-pill bg-danger">{{ np }}</span> </a>
+
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages"> <img src="/static/img/mimi/mujer.png" width="5%"> &nbsp;Jeans para Mujer <span class="badge rounded-pill bg-danger">{{ na }}</span></a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings"><img src="/static/img/mimi/hombre.png" width="5%"> &nbsp;Jeans para Hombre <span class="badge rounded-pill bg-danger">{{ nx }}</span></a>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+
+
+            <div class="container px-3 px-lg-4 mt-5">
+                <div class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                     <!-- Inicio del Card-->
+                    {% for t in lstp %}
+                    <div class="col mb-5">
+
+                        <div class="card h-100">
+
+                            <img class="card-img-top" src={{t.7}} alt="..." />
+
+                            <div class="card-body p-4">
+                                <div class="text-center">
+
+                                    <h5 class="fw-bolder">{{t.1}}</h5>
+
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/producto?id={{t.0}}"><i class="bi bi-info-circle-fill"></i> Más Información</a></div>
+                            </div>
+                        </div>
+                    </div>
+     <!-- FIN del Card-->
+
+
+            {% endfor %}
+
+            </div>
+            </div>
+
+
+
+
+
+      </div>
+
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+            <center> <h3> Jeans para Mujer</h3></center>
+           <div class="container px-3 px-lg-4 mt-5">
+                <div class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                     <!-- Inicio del Card-->
+                    {% for t in am %}
+                    <div class="col mb-5">
+
+                        <div class="card h-100">
+
+                            <img class="card-img-top" src={{t.7}} alt="..." />
+
+                            <div class="card-body p-4">
+                                <div class="text-center">
+
+                                    <h5 class="fw-bolder">{{t.1}}</h5>
+
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/producto?id={{t.0}}">Más Información</a></div>
+                            </div>
+                        </div>
+                    </div>
+     <!-- FIN del Card-->
+
+
+            {% endfor %}
+
+            </div>
+            </div>
+
+
+
+
+      </div>
+      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+     <center> <h3> Jeans para Hombre </h3></center>
+           <div class="container px-3 px-lg-4 mt-5">
+                <div class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                     <!-- Inicio del Card-->
+                    {% for t in go %}
+                    <div class="col mb-5">
+
+                        <div class="card h-100">
+
+                            <img class="card-img-top" src={{t.7}} alt="..." />
+
+                            <div class="card-body p-4">
+                                <div class="text-center">
+
+                                    <h5 class="fw-bolder">{{t.1}}</h5>
+
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/producto?id={{t.0}}">Más Información</a></div>
+                            </div>
+                        </div>
+                    </div>
+     <!-- FIN del Card-->
+
+
+            {% endfor %}
+
+            </div>
+            </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+   <!-- Ifin lista-->
+
+
+
+
+        </section>
+
+
+
+</div>
+
+
+ {% endblock %}

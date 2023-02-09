@@ -1,0 +1,123 @@
+{% extends 'baseclientes.html' %}
+
+{% block body %}
+
+ <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg " style="background-color: black;">
+            <div class="container px-4 px-lg-5">
+                 <a class="navbar-brand" href="/inicio" style="color:white"><img src="/static/img/m_logo.png" width="8%">&nbsp; Mervip</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+
+                        <li class="nav-item"><a class="nav-link" href="/ayuda" style="color:white"><i class="bi bi-question-diamond-fill"></i>Ayuda</a></li>
+                         <li class="nav-item"><a class="nav-link" href="/comparar" style="color:white"><i class="bi bi-x-diamond-fill"></i> Comparar Productos</a></li>
+
+                    </ul>
+                        <a class="btn btn-outline-dark" href="/vercarrito" role="button" style="color:white"><i class="bi-cart-fill me-1"></i>Carrito
+                             <span class="badge rounded-pill bg-secondary">{{cant}}</span></a>
+
+
+
+                        <li class="nav-item dropdown" style="list-style:none;">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
+                                   <font size="4"> <b> <i class="bi bi-person-circle"></i> {{ nomb }} </b> </font>
+                                </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/cerrarsesion" > <i class="bi bi-box-arrow-in-right"></i> Cerrar Sesión</a></li>
+                                 <li><a class="dropdown-item" href="/misfacturas"><i class="bi bi-bag-fill"></i> Mis Compras</a></li>
+
+                            </ul>
+                         </li>
+
+
+
+
+
+
+                </div>
+            </div>
+        </nav>
+
+       <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">
+                         <img src="/static/img/factura.png" class="img-fluid" width="5%">
+                        Mis Facturas
+                        <img src="/static/img/factura.png" class="img-fluid" width="5%">
+                    </h1>
+                    <p> En esta sección se muestran todas las compras realizadas.</p>
+
+                </div>
+            </div>
+        </header>
+<br>
+<br>
+<div class="container">
+ <p> <i class="bi bi-info-circle-fill"></i> Pulse sobre el numero de la Factura para ver los detalles. </p>
+<center>
+
+    <table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+
+        <th scope="col"><center>  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ticket-detailed-fill" viewBox="0 0 16 16">
+  <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5Zm4 1a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5Zm0 5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5ZM4 8a1 1 0 0 0 1 1h6a1 1 0 1 0 0-2H5a1 1 0 0 0-1 1Z"/>
+</svg> #Factura</center></th>
+        <th scope="col">Fecha de Compra</th>
+
+        <th scope="col">Items Comprados</th>
+        <th scope="col">Subtotal</th>
+        <th scope="col">Total</th>
+
+    </tr>
+  </thead>
+  <tbody>
+   {% for tc in carpro %}
+    <tr>
+
+      <td><center> <b><a href="/vfactura?id={{tc.0}}" class="btn btn-info" >  00{{tc.0}} </a></b> </center></td>
+      <td><center>{{tc.5}}</center></td>
+        <td><center>{{tc.2}}</center></td>
+        <td><center>{{tc.3}}$</center></td>
+
+
+        </td>
+
+        <td><center> {{tc.4}}$</center></td>
+
+
+    </tr>
+
+
+    {% endfor %}
+
+  </tbody>
+</table>
+
+
+
+
+
+
+</center>
+
+</div>
+
+
+<center><a class="btn btn-danger btn-lg" href="/inicio" role="button"> <i class="bi bi-caret-left-square-fill"></i> Regresar</a></center>
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+{% endblock %}

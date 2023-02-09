@@ -1,0 +1,337 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<script>
+
+//VALIDACION DE COPIAR TEXTO EN CADA INPUT DEL FORMULARIO
+    window.onload = function() {
+      var cp_cedula = document.getElementById('ccedula');
+        cp_cedula.onpaste = function(e) {
+            e.preventDefault();
+            alert("CAMPO CEDULA : NO SE PUEDE COPIAR EL TEXTO");
+        }
+
+
+
+      var cp_nombre = document.getElementById('cnombre');
+        cp_nombre.onpaste = function(a) {
+            a.preventDefault();
+            alert("CAMPO NOMBRE : NO SE PUEDE COPIAR EL TEXTO");
+        }
+
+       var cp_apellido = document.getElementById('capellido');
+        cp_apellido.onpaste = function(a) {
+            a.preventDefault();
+            alert("CAMPO APELLIDO : NO SE PUEDE COPIAR EL TEXTO");
+        }
+
+       var cp_telefono = document.getElementById('ctelefono');
+        cp_telefono.onpaste = function(a) {
+            a.preventDefault();
+            alert("CAMPO TELÉFONO : NO SE PUEDE COPIAR EL TEXTO");
+        }
+
+
+        var cp_domicilio = document.getElementById('cdomi');
+        cp_domicilio.onpaste = function(a) {
+            a.preventDefault();
+            alert("CAMPO DOMICILIO : NO SE PUEDE COPIAR EL TEXTO");
+        }
+
+        var cp_correo = document.getElementById('ccorreo');
+        cp_correo.onpaste = function(a) {
+            a.preventDefault();
+            alert("CAMPO CORREO : NO SE PUEDE COPIAR EL TEXTO");
+        }
+
+        var cp_contra = document.getElementById('contr1');
+        cp_contra.onpaste = function(a) {
+            a.preventDefault();
+            alert("CAMPO CONTRASEÑA : NO SE PUEDE COPIAR EL TEXTO");
+        }
+
+
+    }
+
+
+//VALIDACION AL MOMENTO DE CARGAR LOS DATOS AL SERV BBDD DE CADA INPUT
+
+    function validar(){
+        var cedula=document.getElementById('ccedula').value;
+        var nombre=document.getElementById('cnombre').value;
+        var apellido=document.getElementById('capellido').value;
+        var celular=document.getElementById('ctelefono').value;
+        var domicilio=document.getElementById('cdomi').value;
+        var correo=document.getElementById('ccorreo').value;
+        var clave=document.getElementById('contr1').value;
+
+        var bandera=false;
+
+        for(var i=0;i<cedula.length;i++){
+			if(isNaN(parseInt(cedula.charAt(i)))==true){
+				alert("No se aceptan caracteres en el campo cedula ")
+				return false;
+			}
+		}
+
+		if(cedula==null  || cedula.length == 0 || /^\s+$/.test(cedula) ){
+			alert("Por favor Ingrese su Cedula ");
+			return false;
+
+		}
+
+
+		if(cedula.length >10){
+			alert("La cedula contiene máximo de 10 dígitos.");
+			return false;
+		}
+
+		if(cedula.length <=9){
+			alert("La cedula contiene menos de 10 dígitos.");
+			return false;
+		}
+
+        for(var i=0;i<celular.length;i++){
+			if(isNaN(parseInt(celular.charAt(i)))==true){
+				alert("No se aceptan caracteres en el campo Número de teléfono ")
+				return false;
+			}
+		}
+
+		if(celular.length >11){
+			alert("El Número de teléfono debe contener hasta máximo 10 dígitos");
+			return false;
+		}
+
+		 for(var i=0;i<nombre.length;i++){
+			if(!isNaN(parseInt(nombre.charAt(i)))==true){
+				alert("Su nombre no puede tener números.")
+				return false;
+			}
+		}
+
+		 for(var i=0;i<apellido.length;i++){
+			if(!isNaN(parseInt(apellido.charAt(i)))==true){
+				alert("Su apellido no puede tener números. ")
+				return false;
+			}
+		}
+
+        if(domicilio==null  || domicilio.length == 0 || /^\s+$/.test(domicilio) ){
+			alert("Por favor ingrese su domicilio ");
+			return false;
+
+		}
+
+    }
+
+    function check(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+
+        //Tecla de retroceso para borrar, siempre la permite
+        if (tecla == 8) {
+            return true;
+        }
+
+        // Patrón de entrada, en este caso solo acepta numeros y letras
+        patron = /[A-Za-z0-9]/;
+        tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+
+
+
+</script>
+
+<title>{{ titulo }}</title>
+ <nav class="navbar navbar-expand-lg " style="background-color: black;" >
+                <div class="container px-5">
+                    <a class="navbar-brand" href="/" style="color:white"><img src="/static/img/m_logo.png" width="8%">&nbsp; MERVIP </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <!-- Button trigger modal -->
+
+
+                            <li class="nav-item"><a class="nav-link" href="/verproductos" accesskey="N" style="color:white">Productos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/contactos" accesskey="C" style="color:white">Contactos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login" accesskey="L" style="color:white">Iniciar Sesión</a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+<br>
+<br>
+
+<div class="container">
+
+ <div class="row" style="background:#1A5C8D; border-radius:20px;">
+
+     <center><h3 style="color:white"> REGISTRO DE NUEVOS CLIENTES MERVIP</h3></center>
+
+    <div class="col">
+
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+
+            {% for message in messages %}
+
+                {{ message|safe }}
+
+            {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+<br>
+        <br>
+        <form method="POST" action="ingresarclie" onsubmit="return validar()">
+
+
+        <b><label for="ccedula" style="color:white">Ingrese su Cédula de Identidad: </label></b>
+
+  <a class="btn btn-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <img src="/static/img/ayuda.png" class="img-fluid" width="45%">
+  </a>
+
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+  <b style="color:green"> En este campo debe ingresar los 10 dígitos de cedula de identidad.</b>
+      <b><i style="color:red"> Por ejemplo : 17234673213</i></b>
+  </div>
+</div>
+        <input type="text" class="form-control" id="ccedula" name="cedula" placeholder="C.I" maxlength="10">
+            <br>
+            <b> <label for="cnombre"  style="color:white">Ingrese su Nombre : </label></b>
+
+              <a class="btn btn-link" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+   <img src="/static/img/ayuda.png" class="img-fluid" width="45%">
+  </a>
+
+<div class="collapse" id="collapseExample1">
+  <div class="card card-body">
+      <b style="color:green"> En este campo debe ingresar solamente su primer nombre.</b>
+      <b><i style="color:red"> Por ejemplo : Carlos</i></b>
+  </div>
+</div>
+
+        <input type="text" class="form-control" id="cnombre" name="nombre" maxlength="256" onkeypress="return check(event)" placeholder="Nombre">
+            <br>
+            <b> <label for="capellido"  style="color:white">Ingrese su Apellido: </label></b>
+              <a class="btn btn-link" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <img src="/static/img/ayuda.png" class="img-fluid" width="45%">
+  </a>
+
+<div class="collapse" id="collapseExample2">
+  <div class="card card-body">
+     <b style="color:green">En este campo debe ingresar solamente su apellido paterno o
+         en caso de no contar con un apellido paterno ingrese el materno</b>
+      <b><i style="color:red"> Por ejemplo : Rivera</i></b>
+
+  </div>
+</div>
+        <input type="text" class="form-control" id="capellido" name="apellido" maxlength="256" onkeypress="return check(event)" placeholder="Apellido">
+            <br>
+            <b><label for="ctelefono"  style="color:white">Número de teléfono : </label></b>
+              <a class="btn btn-link" data-bs-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <img src="/static/img/ayuda.png" class="img-fluid" width="45%">
+  </a>
+
+<div class="collapse" id="collapseExample3">
+  <div class="card card-body">
+      <b style="color:green">En este campo debe ingresar los 10 números de su teléfono celular o los 9 dígitos de su teléfono
+    fijo. Recuerde colocar el identificador de provincia antes de su número fijo .
+</b>
+      <b><i style="color:red"> Por ejemplo: 0997862541 o (02) 2432123</i></b>
+  </div>
+</div>
+        <input type="text" class="form-control" id="ctelefono" name="telefono" placeholder="09xxxxxxxxxx" onkeypress="return check(event)" maxlength="10">
+            <br>
+            <b> <label for="cdomi"  style="color:white">Dirección de Domicilio: </label></b>
+              <a class="btn btn-link" data-bs-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <img src="/static/img/ayuda.png" class="img-fluid" width="45%">
+  </a>
+
+<div class="collapse" id="collapseExample4">
+  <div class="card card-body">
+      <b style="color:green">En este campo debe ingresar su dirección de domicilio. </b>
+      <b><i style="color:red">Por ejemplo: Av.Naciones Unidas y Republica</i></b>
+  </div>
+</div>
+        <input type="text" class="form-control" id="cdomi" name="domicilio" maxlength="256" onkeypress="return check(event)" placeholder="Dirección">
+
+              <br>
+            <b>  <label for="ccorreo"  style="color:white" >Correo Electrónico: </label></b>
+              <a class="btn btn-link" data-bs-toggle="collapse" href="#collapseExample5" role="button" aria-expanded="false" aria-controls="collapseExample">
+   <img src="/static/img/ayuda.png" class="img-fluid" width="45%">
+  </a>
+
+<div class="collapse" id="collapseExample5">
+  <div class="card card-body">
+    <b style="color:green">En este campo debe ingresar su correo electrónico personal,
+        recuerde que un correo tiene la siguiente estructura </b> <b><i style="color:red"> Por ejemplo: carlosrivera@gmail.com</i></b>
+  </div>
+</div>
+        <input type="email" class="form-control" id="ccorreo" name="correo" placeholder="ejemplo@ejemplo.com">
+
+              <br>
+            <b> <label for="contr1"  style="color:white">Ingrese una Clave Personal para su Cuenta : </label></b>
+              <a class="btn btn-link" data-bs-toggle="collapse" href="#collapseExample6" role="button" aria-expanded="false" aria-controls="collapseExample">
+   <img src="/static/img/ayuda.png" class="img-fluid" width="45%">
+  </a>
+
+<div class="collapse" id="collapseExample6">
+  <div class="card card-body">
+     <b style="color:green">En este campo debe ingresar una clave personal que debe contar con un mínimo de
+         8 digitos o caracteres.</b> <b><i style="color:red">Su clave personal es responsabilidad del cliente.</i></b>
+  </div>
+</div>
+        <input type="password" class="form-control" id="contr1" name="contrasenia">
+
+            <br>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+             <b> <label class="form-check-label" for="flexCheckDefault" style="color:white">
+                <a href="https://drive.google.com/file/d/13WxScQhQ_3na52QhmvBYS9yD-tqvQK6t/view?usp=sharing" target="_blank" style="color:white">Acepta los terminos y condiciones de Mervip Ecuador.</a>
+              </label></b>
+
+
+
+             </div>
+              <br>
+
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+             <button type="reset" class="btn btn-warning">Limpiar</button>
+            <a href="/login" class="btn btn-danger">Cancelar</a>
+
+
+    </form>
+
+
+
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+</div>
+
+<br>
+             <br>
+
+
+
+{% endblock %}

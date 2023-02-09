@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<script>
+     window.onload = function() {
+      var cp_correo = document.getElementById('correo');
+        cp_correo.onpaste = function(e) {
+            e.preventDefault();
+            alert("CAMPO CORREO : NO SE PUEDE COPIAR EL TEXTO");
+        }
+
+        var cp_contra = document.getElementById('clave');
+        cp_contra.onpaste = function(e) {
+            e.preventDefault();
+            alert("CAMPO CONTRASEÑA : NO SE PUEDE COPIAR EL TEXTO");
+        }
+
+    }
+</script>
+  <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg " style="background-color: black;" >
+                <div class="container px-5">
+                    <a class="navbar-brand" href="/" style="color:white"><img src="/static/img/m_logo.png" width="8%">&nbsp; MERVIP </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <!-- Button trigger modal -->
+
+
+                            <li class="nav-item"><a class="nav-link" href="/verproductos" accesskey="N" style="color:white"><i class="bi bi-shop-window"></i> Productos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/contactos" accesskey="C" style="color:white"><i class="bi bi-telephone-fill"></i> Contactos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login" accesskey="L" style="color:white"><i class="bi bi-person-badge"></i> Iniciar Sesión</a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+
+<div class="row align-items-start">
+
+
+    <div class="col" style="background-color: #7FB3D5 ;border-radius:10px; ">
+        <br>
+        <center><h3><b> Bienvenid@ a la Tienda Virtual de MERVIP</b>
+            <button type="button" class="btn btn-outline-secondary" id="hablar"><img src="/static/img/habla.png"></button></h3></center>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+
+            {% for message in messages %}
+
+                {{ message|safe }}
+
+            {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+          <!-- Formulario de login columna 2  -->
+        <form method="POST" action="ingresar">
+
+                <div class="form-group">
+                    <label for="correo" style="color:black"><b>Correo Electronico </b>
+
+
+
+
+                    </label>
+
+                    <input type="email" class="form-control" id="correo" name="correo" aria-describedby="emailHelp" placeholder="Ejm:ejemplo@ejemplo.com" required>
+                    <small id="emailHelp" class="form-text text-muted">Ingrese su Correo Electronico</small>
+                </div>
+                <div class="form-group">
+                    <label for="clave" style="color:black"><b>Contraseña</b> </label>
+                    <input type="password" class="form-control" id="clave" name="contrasenia" placeholder="Contraseña" required>
+                </div>
+                    <br>
+
+            <hr>
+                 <button type="submit" class="btn btn-primary"><i class="bi bi-door-open"></i> Ingresar</button>
+                 <a class="btn btn-success" href="/registro" role="button"><i class="bi bi-person-plus-fill"></i> Crear una Cuenta</a>
+
+             <small  class="form-text text-muted">¿No tiene cuenta?,pulse en crear cuenta y disfrute de nuestros servicios.</small>
+         </form>
+
+
+<br>
+            <!-- Fin de Formulario de login columna 2  -->
+    </div>
+
+</div>
+
+
+
+
+</div>
+
+
+<script>
+
+var data=document.getElementById('texto').innerHTML;
+//console.log(data);
+document.getElementById('hablar').addEventListener("click",()=>{
+    decir(data);
+});
+
+function decir(texto){
+    speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+}
+
+
+
+</script>
+
+
+
+
+{% endblock %}
+
+
+
